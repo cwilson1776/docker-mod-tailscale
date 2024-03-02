@@ -9,6 +9,10 @@ else
     FLAGS="${FLAGS} --authkey=${TAILSCALE_AUTHKEY}"
 fi
 
+if [ -v TAILSCALE_ADVERTISE_TAGS ]; then
+    FLAGS="${FLAGS} --advertise-tags=${TAILSCALE_ADVERTISE_TAGS}"
+fi
+
 if [ -v TAILSCALE_HOSTNAME ]; then
     FLAGS="${FLAGS} --hostname=${TAILSCALE_HOSTNAME}"
 fi
