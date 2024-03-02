@@ -30,6 +30,7 @@ if [ -v TAILSCALE_BE_EXIT_NODE ]; then
     FLAGS="${FLAGS} --advertise-exit-node=${TS_BE_EXIT_NODE}"
 fi
 
+echo "[cmd] tailscale up $FLAGS"
 tailscale up $FLAGS
 
 # configure serve or funnel
@@ -42,13 +43,12 @@ TARGET="${TAILSCALE_TARGET_MODE:=https}://localhost:${TAILSCALE_TARGET_PORT:=443
 if [ -v TAILSCALE_SERVE_PORT ] && [ -v TAILSCALE_SERVE_MODE ]; then
 
     if [ -v TAILSCALE_FUNNEL ]; then
+        echo "[cmd] tailscale funnel --bg ${ENDPOINT} ${TARGET}"
         tailscale funnel --bg ${ENDPOINT} ${TARGET}
     else
+        echo "[cmd] tailscale serve --bg ${ENDPOINT} ${TARGET}"
         tailscale serve --bg ${ENDPOINT} ${TARGET}
     fi
     
 fi
-
-
-
 

@@ -14,7 +14,9 @@ else
 fi
 
 if ! [ -v TAILSCALE_TAILSCALED_LOG ]; then
+    echo "[cmd] tailscaled $FLAGS 2>&1 > /dev/null"
     tailscaled $FLAGS 2>&1 > /dev/null
 else
+    echo "[cmd] tailscaled $FLAGS"
     tailscaled $FLAGS
 fi
